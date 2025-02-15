@@ -5,7 +5,7 @@ const path = require('path');
 // Set EJS as the view engine
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
-app.use(express.static('public/'));
+app.use(express.static(path.join(__dirname, "public")));
 
 // Route using EJS rendering
 app.get('/', (req, res) => {
