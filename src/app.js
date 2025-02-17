@@ -1,18 +1,17 @@
 const express = require('express');
-const app = express();
 const path = require('path');
+const app = express();
 
-// Set EJS as the view engine
-app.set('view engine', 'ejs');
-app.set('views', path.join(__dirname, 'views'));
-app.use(express.static(path.join(__dirname, "public")));
+// Serve static files from the "public" folder
+app.use(express.static('src/public'));
 
-// Route using EJS rendering
+
+// Route to serve index.html
 app.get('/', (req, res) => {
-    res.render('index', { title: 'Home Page' }); // Looking for views/index.ejs
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
-const port = 3000;
-app.listen(port, () => {
-    console.log(`Server running at http://localhost:${port}`);
+const PORT = 3000;
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 });
